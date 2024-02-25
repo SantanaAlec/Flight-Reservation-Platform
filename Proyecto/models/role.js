@@ -2,15 +2,15 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Plane', {
+    await queryInterface.createTable('Role', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      seats: {
-        type: Sequelize.INTEGER,
+      roleName: {
+        type: Sequelize.ENUM('ADMINISTRADOR', 'CLIENTE'),
         allowNull: false
       },
       createdAt: {
@@ -24,6 +24,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Plane');
+    await queryInterface.dropTable('Role');
   }
 };
