@@ -7,10 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Santana Alec",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.4.1",
-    "mysql2": "^3.9.1"
+    "mysql2": "^3.9.1",
+    "sequelize": "^6.37.1"
   }
 }
