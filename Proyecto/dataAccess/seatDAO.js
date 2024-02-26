@@ -1,84 +1,64 @@
-const {Seat} = require('../models/seat');
+const {Seat} = require('../models');
 
 class SeatDAO {
     constructor() {}
 
-    async create(number, classType, state, price, flightId, planeId, reservationId, userId, passengerId, seatId){
+    async createSeat(planeId, number, type, state, price) {
         try {
             const seat = await Seat.create({
-                number,
-                classType,
-                state,
-                price,
-                flightId,
                 planeId,
-                reservationId,
-                userId,
-                passengerId,
-                seatId
+                number,
+                type,
+                state,
+                price
             });
             return seat;
         } catch (error) {
-            throw error;
+            console.log(error);
         }
     }
 
-    async getAll(){
+    async getAllSeats() {
         try {
             const seats = await Seat.findAll();
             return seats;
         } catch (error) {
-            throw error;
+            console.log(error);
         }
     }
 
-    async getById(id){
+    async getSeatById(id) {
         try {
             const seat = await Seat.findByPk(id);
             return seat;
         } catch (error) {
-            throw error;
+            console.log(error);
         }
     }
 
-    async update(id, number, classType, state, price, flightId, planeId, reservationId, userId, passengerId, seatId){
+    async updateSeat(id, planeId, number, type, state, price) {
         try {
             const seat = await Seat.update(
-                {
-                    number,
-                    classType,
-                    state,
-                    price,
-                    flightId,
-                    planeId,
-                    reservationId,
-                    userId,
-                    passengerId,
-                    seatId
-                },
-                {
-                    where: {
-                        id,
-                    },
-                }
+                { planeId, number, type, state, price },
+                { where: { id } }
             );
-            const seatUpdated = this.getById(id);
+            const seatUpdated = await Seat.findByPk(id);
             return seatUpdated;
         } catch (error) {
-            throw error;
+            console.log(error);
         }
     }
 
-    async delete(id){
+    async deleteSeat(id) {
         try {
-            const seat = await Seat.destroy({
-                where: {
-                    id,
-                },
-            });
-            return seat;
+            const seatDeleted = await Seat.findByPk(id);
+            if (!seatDeleted) {
+                console.log("Seat not found");
+            }
+            await seatDeleted.destroy()
+            return seatDeleted;
         } catch (error) {
-            throw error;
+            console.log(error);
         }
     }
 }

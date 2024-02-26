@@ -1,69 +1,61 @@
-const { Plane } = require("../models");
-const {Seats} = require("../models");
+const {Plane} = require('../models');
 
 class PlaneDAO {
     constructor() {}
 
-    async create(seats, model) {
+    async createPlane(seats, model) {
         try {
             const plane = await Plane.create({
                 seats,
-                model,
+                model
             });
             return plane;
         } catch (error) {
-            throw error;
+            console.log(error);
         }
     }
 
-    async getAll() {
+    async getAllPlanes() {
         try {
             const planes = await Plane.findAll();
             return planes;
         } catch (error) {
-            throw error;
+            console.log(error);
         }
     }
 
-    async getById(id) {
+    async getPlaneById(id) {
         try {
             const plane = await Plane.findByPk(id);
             return plane;
         } catch (error) {
-            throw error;
+            console.log(error);
         }
     }
 
-    async update(id, seats, model) {
+    async updatePlane(id, seats, model) {
         try {
             const plane = await Plane.update(
-                {
-                    seats,
-                    model,
-                },
-                {
-                    where: {
-                        id,
-                    },
-                }
+                { seats, model },
+                { where: { id } }
             );
-            const planeUpdated = this.getById(id);
+            const planeUpdated = await Plane.findByPk(id);
             return planeUpdated;
         } catch (error) {
-            throw error;
+            console.log(error);
         }
     }
 
-    async delete(id) {
+    async deletePlane(id) {
         try {
-            const plane = await Plane.destroy({
-                where: {
-                    id,
-                },
-            });
-            return plane;
+            const planeDeleted = await Plane.findByPk(id);
+            if (!planeDeleted) {
+                console.log("Plane not found");
+            }
+            await planeDeleted.destroy()
+            return planeDeleted;
         } catch (error) {
-            throw error;
+            console.log(error);
         }
     }
 }

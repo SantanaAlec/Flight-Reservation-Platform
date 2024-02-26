@@ -1,72 +1,65 @@
-const {User} = require('../models/user');
+const { User } = require("../models");
 
 class UserDAO {
     constructor() {}
 
-    async create(name, email, password, roles){
+    async createUser(nombre, role, email, password) {
         try {
-            const user = await User.create({
-                name,
+            const user = await User.createUser({
+                nombre,
+                role,
                 email,
                 password,
-                roles
             });
             return user;
         } catch (error) {
-            throw error;
+            console.log(error);
         }
     }
 
-    async getAll(){
+    async geyAllUsers() {
         try {
             const users = await User.findAll();
             return users;
         } catch (error) {
-            throw error;
+            console.log(error);
         }
     }
 
-    async getById(id){
+    async getUserById(id) {
         try {
             const user = await User.findByPk(id);
             return user;
         } catch (error) {
-            throw error;
+            console.log(error);
         }
     }
 
-    async update(id, name, email, password, roles){
+    async updateUser(id, nombre, role, email, password) {
         try {
-            const user = await User.update(
-                {
-                    name,
-                    email,
-                    password,
-                    roles
-                },
-                {
-                    where: {
-                        id,
-                    },
-                }
+            const user = await User.updateUser(
+                { nombre, role, email, password },
+                { where: { id } }
             );
-            const userUpdated = this.getById(id);
+            const userUpdated = await User.findByPk(id);
             return userUpdated;
         } catch (error) {
-            throw error;
+            console.log(error);
         }
     }
 
-    async delete(id){
+    async deleteUser(id) {
         try {
-            const user = await User.destroy({
-                where: {
-                    id,
-                },
-            });
-            return user;
+            const userDeleted = await User.findByPk(id);
+            if (!userDeleted) {
+                console.log("User not found");
+            }
+            await userDeleted.destroy()
+            return userDeleted;
         } catch (error) {
-            throw error;
+            console.log(error);
         }
     }
 }
+
+module.exports = new UserDAO();
