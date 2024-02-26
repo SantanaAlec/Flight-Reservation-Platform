@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "pruebas",
+    "password": "Pru3b4s.123",
+    "database": "Airline",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "pruebas",
+    "password": "Pru3b4s.123",
+    "database": "Airline",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "pruebas",
+    "password": "Pru3b4s.123",
+    "database": "Airline",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
