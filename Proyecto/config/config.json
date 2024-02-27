@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "root",
-    "password": "password",
-    "database": "airlines",
+    "username": "YOUR_USER",
+    "password": "YOUR_PASSWORD",
+    "database": "DB_NAME",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
