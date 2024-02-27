@@ -2,21 +2,21 @@
   "development": {
     "username": "root",
     "password": "password",
-    "database": "flights",
+    "database": "airlines",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
-    "username": "YOUR_USERNAME",
+    "username": "YOUR_USER",
     "password": "YOUR_PASSWORD",
-    "database": "flights_test",
+    "database": "DB_NAME_TEST",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
-    "username": "YOUR_USERNAME",
-    "password": "YOUR_PASSWORD",
-    "database": "flights_production",
+    "username": "YOUR_USER",
+    "password": "TOUR_PASSWORD",
+    "database": "DB_NAME_TEST",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }

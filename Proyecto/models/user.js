@@ -11,11 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      user.hasMany(models.reservation, {
+        foreignKey: 'idUser'
+      });
     }
   }
   user.init({
-    role: DataTypes.ENUM('ADMIN', 'CLIENT'),
     name: DataTypes.STRING,
+    role: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING
   }, {

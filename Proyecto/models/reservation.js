@@ -11,11 +11,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      reservation.belongsTo(models.user, {
+        foreignKey: 'idUser'
+      });
+      reservation.hasMany(models.payment,{
+        foreignKey: 'idReservation'
+      });
     }
   }
   reservation.init({
-    state: DataTypes.ENUM('PENDING', 'CONFIRMED', 'CANCELLED'),
-    idFlight: DataTypes.INTEGER
+    idUser: DataTypes.INTEGER,
+    idFlight: DataTypes.INTEGER,
+    state: DataTypes.ENUM('PENDING', 'CANCELED', 'COMPLETED'), 
   }, {
     sequelize,
     modelName: 'reservation',

@@ -11,12 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      payment.belongsTo(models.reservation, {
+        foreignKey: 'idReservation'
+      });
     }
   }
   payment.init({
-    idFlight: DataTypes.INTEGER,
-    method: DataTypes.INTEGER,
-    transactionID: DataTypes.INTEGER
+    idReservation: DataTypes.INTEGER,
+    paymentMethod: DataTypes.STRING,
+    transactionId: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'payment',

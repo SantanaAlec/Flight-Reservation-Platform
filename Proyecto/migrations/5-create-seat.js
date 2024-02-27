@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('flights', {
+    await queryInterface.createTable('seats', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -12,23 +12,17 @@ module.exports = {
       idPlane: {
         type: Sequelize.INTEGER
       },
-      origin: {
+      number: {
         type: Sequelize.STRING
       },
-      destiny: {
+      classType: {
         type: Sequelize.STRING
       },
-      departureDate: {
-        type: Sequelize.DATE
+      state: {
+        type: Sequelize.BOOLEAN
       },
-      arrivalDate: {
-        type: Sequelize.DATE
-      },
-      luggage: {
-        type: Sequelize.DECIMAL
-      },
-      cost: {
-        type: Sequelize.DECIMAL
+      price: {
+        type: Sequelize.FLOAT
       },
       createdAt: {
         allowNull: false,
@@ -41,6 +35,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('flights');
+    await queryInterface.dropTable('seats');
   }
 };

@@ -11,14 +11,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      seat.belongsTo(models.plane, {
+        foreignKey: 'idPlane'
+      });
     }
   }
   seat.init({
     idPlane: DataTypes.INTEGER,
-    number: DataTypes.INTEGER,
+    number: DataTypes.STRING,
     classType: DataTypes.ENUM('ECONOMY', 'BUSINESS', 'FIRST_CLASS'),
     state: DataTypes.BOOLEAN,
-    price: DataTypes.DECIMAL
+    price: DataTypes.FLOAT
   }, {
     sequelize,
     modelName: 'seat',
