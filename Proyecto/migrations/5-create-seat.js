@@ -10,7 +10,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       idPlane: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'planes',
+          key: 'id'
+        }
       },
       number: {
         type: Sequelize.STRING

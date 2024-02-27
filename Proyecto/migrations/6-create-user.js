@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       role: {
-        type: Sequelize.STRING
+        type: Sequelize.ENUM('ADMIN', 'CLIENT')
       },
       email: {
         type: Sequelize.STRING

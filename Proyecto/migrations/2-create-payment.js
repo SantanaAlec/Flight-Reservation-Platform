@@ -10,7 +10,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       idReservation: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'reservations',
+          key: 'id'
+        }
       },
       paymentMethod: {
         type: Sequelize.STRING
