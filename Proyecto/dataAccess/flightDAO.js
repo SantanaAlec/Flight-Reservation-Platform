@@ -1,6 +1,8 @@
 const { Flight } = require("../models");
-const { PlaneDAO } = require("./planeDAO");
 const { UserDAO } = require("./userDAO");
+const { PlaneDAO } = require("./planeDAO");
+const { SeatDAO } = require("./seatDAO");
+const { ReservationDAO } = require("./reservationDAO");
 
 class FlightDAO {
     constructor() {}
@@ -19,6 +21,7 @@ class FlightDAO {
             //comprobar si existe el usuario y si el usuario tiene asientos
             //registrar el vuelo
             //Si solo pongo un vuelo y luego calculo el presio en reservación en base a cuantos asientos tiene el usuario
+            /** 
             const flight = await Flight.create({
                 idPlane,
                 origin,
@@ -28,6 +31,25 @@ class FlightDAO {
                 luggage,
                 cost,
             });
+            */
+
+            const plane = await PlaneDAO.getPlaneById(idPlane);
+
+            if (!plane) {
+                throw new Error("Plane not found");
+            }
+
+            //obtener los asientos del avión
+            const seats = SeatDAO.getSeatsByPlaneId(idPlane);
+
+            if (!seats) {
+                throw new Error("Seats not found");
+            }
+
+            //obtener las reservas relacionadas con el vuelo
+            ReservationDAO.getReservationsByFlightId(idPlane);
+            
+
             return flight;
         } catch (error) {
             throw error;
@@ -100,7 +122,7 @@ class FlightDAO {
 
             const updateFlight = await Flight.update(
                 {
-                    flight
+                    flight,
                 },
                 {
                     where: {

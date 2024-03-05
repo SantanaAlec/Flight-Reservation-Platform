@@ -34,6 +34,19 @@ class ReservationDAO {
         }
     }
 
+    getReservationsByFlightId(idFlight){
+        try {
+            const reservations = Reservation.findAll({
+                where: {
+                    idFlight,
+                },
+            });
+            return reservations;
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async updateReservation(id, idUser, idFlight, state) {
         try {
             const reservation = await Reservation.update(
