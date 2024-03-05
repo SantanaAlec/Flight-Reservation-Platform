@@ -48,6 +48,16 @@ class FlightDAO {
 
             //obtener las reservas relacionadas con el vuelo (CON EL VUELO O CON EL ÁVION?!)
             ReservationDAO.getReservationsByFlightId(idPlane);
+            /**
+                         const reservations = await Reservation.findAll({
+                where: { idFlight: null},
+                });
+             */
+
+            //obtener los usuarios relacionados con las reservas
+            const users = UserDAO.getUsersByReservations(reservations);
+            //obtener los asientos relacionados con los usuarios de ese vuelo
+            //registrar el vuelo
 
             return flight;
         } catch (error) {
