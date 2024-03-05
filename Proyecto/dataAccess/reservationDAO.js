@@ -3,13 +3,27 @@ const {Reservation} = require('../models');
 class ReservationDAO {
     constructor() {}
 
-    async createReservation(idUser, idFlight, state){
+    async createReservation(idUser, idFlight, state) {
         try {
+            // Verificar si el usuario existe
+            const user = await User.findByPk(idUser);
+            if (!user) {
+                throw new Error("El usuario no existe.");
+            }
+
+            // Verificar si el vuelo existe
+            const flight = await Flight.findByPk(idFlight);
+            if (!flight) {
+                throw new Error("El vuelo no existe.");
+            }
+
+            // Si ambos existen, crear la reservación
             const reservation = await Reservation.create({
                 idUser,
                 idFlight,
                 state
             });
+
             return reservation;
         } catch (error) {
             throw error;

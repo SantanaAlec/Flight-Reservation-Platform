@@ -15,6 +15,26 @@ class PaymentDAO {
             throw error;
         }
     }
+    
+    async getUnpaidReservations() {
+        try {
+            // Obtener todas las reservaciones
+            const reservations = await Reservation.findAll({
+                include: [{
+                    model: Payment,
+                    where: { idReservation: null },
+                    required: false
+                }]
+            });
+
+            // Filtrar para obtener solo las reservaciones sin pagar
+            const unpaidReservations = reservations.filter(reservation => reservation.Payments.length === 0);
+
+            return unpaidReservations;
+        } catch (error) {
+            throw error;
+        }
+    }
 
     async getAllPayments() {
         try {
