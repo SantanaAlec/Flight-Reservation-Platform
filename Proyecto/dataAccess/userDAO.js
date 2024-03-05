@@ -1,4 +1,4 @@
-const {User} = require('../models');
+const { User } = require("../models");
 
 class UserDAO {
     constructor() {}
@@ -35,28 +35,41 @@ class UserDAO {
         }
     }
 
+    async getUsersByReservationId(idReservation) {
+        try {
+            const users = User.findAll({
+                where: {
+                    idReservation,
+                },
+            });
+            return users;
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async updateUser(id, userData) {
         try {
-            const {name, role, email, password} = userData;
+            const { name, role, email, password } = userData;
 
             const user = new User();
 
-            if (name){
+            if (name) {
                 user.name = name;
             }
-            if (role){
+            if (role) {
                 user.role = role;
             }
-            if (email){
+            if (email) {
                 user.email = email;
             }
-            if (password){
+            if (password) {
                 user.password = password;
             }
 
             const updatedUser = await User.update(
                 {
-                    user
+                    user,
                 },
                 {
                     where: {

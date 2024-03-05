@@ -51,9 +51,39 @@ class SeatDAO {
         }
     }
 
+    async getSeatsByUserId(idUser) {
+        try {
+            const seats = await Seat.findAll({
+                where: {
+                    idUser,
+                },
+            });
+            return seats;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    //Recrear este método
+    /** 
+    async getSeatsByUsers(userArray) {
+        try {
+            const seats = await Seat.findAll({
+                where: {
+                    idUser: userArray,
+                },
+            });
+            return seats;
+        } catch (error) {
+            throw error;
+        }
+    }
+    */
+
     async updateSeat(id, seatData) {
         try {
-            const { idPlane, idUser, number, classType, state, price } = seatData;
+            const { idPlane, idUser, number, classType, state, price } =
+                seatData;
 
             const seat = new Seat();
 
@@ -88,7 +118,7 @@ class SeatDAO {
 
             const updatedSeat = await Seat.update(
                 {
-                    seat
+                    seat,
                 },
                 {
                     where: {
@@ -96,7 +126,7 @@ class SeatDAO {
                     },
                 }
             );
-            
+
             return updatedSeat;
         } catch (error) {
             throw error;
