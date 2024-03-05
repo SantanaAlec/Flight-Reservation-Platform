@@ -2,33 +2,26 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('flights', {
+    await queryInterface.createTable('payments', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      idPlane: {
-        type: Sequelize.INTEGER
+      idReservation: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'reservations',
+          key: 'id'
+        }
       },
-      origin: {
+      paymentMethod: {
         type: Sequelize.STRING
       },
-      detiny: {
+      transactionId: {
         type: Sequelize.STRING
-      },
-      departureDate: {
-        type: Sequelize.DATE
-      },
-      arrivalDate: {
-        type: Sequelize.DATE
-      },
-      luggage: {
-        type: Sequelize.FLOAT
-      },
-      cost: {
-        type: Sequelize.FLOAT
       },
       createdAt: {
         allowNull: false,
@@ -41,6 +34,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('flights');
+    await queryInterface.dropTable('payments');
   }
 };
