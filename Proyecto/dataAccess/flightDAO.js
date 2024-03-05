@@ -57,6 +57,7 @@ class FlightDAO {
             //obtener los usuarios relacionados con las reservas
             const users = UserDAO.getUsersByReservations(reservations);
             //obtener los asientos relacionados con los usuarios de ese vuelo
+            const seatsReserved = SeatDAO.getSeatsByUsers(/*Variable ID o Array ?*/);
             //registrar el vuelo
 
             return flight;
