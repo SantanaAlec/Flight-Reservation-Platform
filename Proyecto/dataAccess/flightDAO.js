@@ -46,9 +46,8 @@ class FlightDAO {
                 throw new Error("Seats not found");
             }
 
-            //obtener las reservas relacionadas con el vuelo
+            //obtener las reservas relacionadas con el vuelo (CON EL VUELO O CON EL ÁVION?!)
             ReservationDAO.getReservationsByFlightId(idPlane);
-            
 
             return flight;
         } catch (error) {
