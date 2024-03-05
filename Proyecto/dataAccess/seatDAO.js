@@ -65,12 +65,13 @@ class SeatDAO {
     }
 
     //Recrear este método
-    /** 
     async getSeatsByUsers(userArray) {
         try {
             const seats = await Seat.findAll({
                 where: {
-                    idUser: userArray,
+                    idUser: {
+                        [Sequelize.Op.in]: userArray // Utiliza el operador in para seleccionar asientos donde idUser esté en el array proporcionado
+                    },
                 },
             });
             return seats;
@@ -78,7 +79,7 @@ class SeatDAO {
             throw error;
         }
     }
-    */
+    
 
     async updateSeat(id, seatData) {
         try {

@@ -17,12 +17,27 @@ class FlightDAO {
         cost
     ) {
         try {
-            //Comprobar si existe el avión, Y comprobar cuales asientos pertenecen a ese avión
-            //comprobar si existe el usuario y si el usuario tiene asientos
-            //registrar el vuelo
+            // Desestructurar flightDetails para obtener idPlane, idUser, y otros campos necesarios
+            const { idPlane, idUser, origin, destiny, departureDate, arrivalDate, luggage, cost } = flightDetails;
+
+            // Comprobar si existe el avión
+            const planeExists = await PlaneDAO.getPlaneById(idPlane);
+            if (!planeExists) {
+                throw new Error("El avión especificado no existe.");
+            }
+
+            // Comprobar cuales asientos pertenecen a ese avión
+            const seatsForPlane = await SeatDAO.getSeatsByPlaneId(idPlane);
+            if (!seatsForPlane.length) {
+                throw new Error("No hay asientos disponibles para este avión.");
+            }
+
+            // Comprobar si existe el usuario
+            const userExists = await UserDAO.getUserById(idUser);
+            if (!userExists) {
+                throw new Error("El usuario especificado no existe.");
+            }
             //Si solo pongo un vuelo y luego calculo el presio en reservación en base a cuantos asientos tiene el usuario
-            /**
-             */
 
             const plane = await PlaneDAO.getPlaneById(idPlane);
 
@@ -52,7 +67,7 @@ class FlightDAO {
                 SeatDAO.getSeatsByUsers(/*Variable ID o Array ?*/);
             //registrar el vuelo
 
-            const flight = await Flight.create({
+            const newflight = await Flight.create({
                 idPlane,
                 origin,
                 detiny,
