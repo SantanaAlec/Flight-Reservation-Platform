@@ -3,10 +3,11 @@ const {Plane} = require('../models');
 class PlaneDAO {
     constructor() {}
 
-    async createPlane(type) {
+    async createPlane(type, seats) {
         try {
             const plane = await Plane.create({
-                type
+                type,
+                seats
             });
             return plane;
         } catch (error) {

@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   plane.init({
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    seats: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'plane',
