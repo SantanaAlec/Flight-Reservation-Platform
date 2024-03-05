@@ -14,13 +14,16 @@ module.exports = (sequelize, DataTypes) => {
       seat.belongsTo(models.plane, {
         foreignKey: 'idPlane'
       });
+      seat.belongsTo(models.user, {
+        foreignKey: 'idUser'
+      });
     }
   }
   seat.init({
     idPlane: DataTypes.INTEGER,
+    idUser: DataTypes.INTEGER,
     number: DataTypes.STRING,
     classType: DataTypes.ENUM('ECONOMY', 'BUSINESS', 'FIRST_CLASS'),
-    state: DataTypes.BOOLEAN,
     price: DataTypes.FLOAT
   }, {
     sequelize,

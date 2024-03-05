@@ -1,4 +1,6 @@
-const {Seat} = require('../models');
+const { Seat } = require("../models");
+const { PlaneDAO } = require("./planeDAO");
+const { UserDAO } = require("./userDAO");
 
 class SeatDAO {
     constructor() {}
@@ -10,7 +12,7 @@ class SeatDAO {
                 number,
                 classType,
                 state,
-                price
+                price,
             });
             return seat;
         } catch (error) {
@@ -36,15 +38,57 @@ class SeatDAO {
         }
     }
 
-    async updateSeat(id, idPlane, number, classType, state, price) {
+    async getSeatsByPlaneId(idPlane) {
         try {
-            const seat = await Seat.update(
-                {
+            const seats = await Seat.findAll({
+                where: {
                     idPlane,
-                    number,
-                    classType,
-                    state,
-                    price
+                },
+            });
+            return seats;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async updateSeat(id, seatData) {
+        try {
+            const { idPlane, idUser, number, classType, state, price } = seatData;
+
+            const seat = new Seat();
+
+            if (idPlane) {
+                const plane = await PlaneDAO.findByPk(idPlane);
+                if (!plane) {
+                    throw new Error("Plane not found");
+                }
+                seat.idPlane = idPlane;
+            }
+
+            if (idUser) {
+                const user = await UserDAO.findByPk(idPlane);
+                if (!user) {
+                    throw new Error("User not found");
+                }
+                seat.idUser = idUser;
+            }
+
+            if (number) {
+                seat.number = number;
+            }
+            if (classType) {
+                seat.classType = classType;
+            }
+            if (state) {
+                seat.state = state;
+            }
+            if (price) {
+                seat.price = price;
+            }
+
+            const updatedSeat = await Seat.update(
+                {
+                    seat
                 },
                 {
                     where: {
@@ -52,8 +96,8 @@ class SeatDAO {
                     },
                 }
             );
-            const seatUpdated = Seat.findByPk(id);
-            return seatUpdated;
+            
+            return updatedSeat;
         } catch (error) {
             throw error;
         }
@@ -63,7 +107,7 @@ class SeatDAO {
         try {
             const seat = await Seat.findByPk(id);
             if (!seat) {
-                throw new Error('Seat not found');
+                throw new Error("Seat not found");
             }
             await seat.destroy();
             return seat;

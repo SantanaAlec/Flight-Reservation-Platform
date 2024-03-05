@@ -35,14 +35,28 @@ class UserDAO {
         }
     }
 
-    async updateUser(id, name, role, email, password) {
+    async updateUser(id, userData) {
         try {
-            const user = await User.update(
+            const {name, role, email, password} = userData;
+
+            const user = new User();
+
+            if (name){
+                user.name = name;
+            }
+            if (role){
+                user.role = role;
+            }
+            if (email){
+                user.email = email;
+            }
+            if (password){
+                user.password = password;
+            }
+
+            const updatedUser = await User.update(
                 {
-                    name,
-                    role,
-                    email,
-                    password,
+                    user
                 },
                 {
                     where: {
@@ -50,8 +64,7 @@ class UserDAO {
                     },
                 }
             );
-            const userUpdated = User.findByPk(id);
-            return userUpdated;
+            return updatedUser;
         } catch (error) {
             throw error;
         }

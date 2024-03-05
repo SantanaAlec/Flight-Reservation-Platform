@@ -17,14 +17,19 @@ module.exports = {
           key: 'id'
         }
       },
+      idUser: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'users',
+          key: 'id'
+        }
+      },
       number: {
         type: Sequelize.STRING
       },
       classType: {
         type: Sequelize.STRING
-      },
-      state: {
-        type: Sequelize.BOOLEAN
       },
       price: {
         type: Sequelize.FLOAT

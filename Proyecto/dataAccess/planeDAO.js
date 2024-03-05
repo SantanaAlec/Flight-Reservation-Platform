@@ -1,13 +1,12 @@
-const {Plane} = require('../models');
+const { Plane } = require("../models");
 
 class PlaneDAO {
     constructor() {}
 
-    async createPlane(type, seats) {
+    async createPlane(type) {
         try {
             const plane = await Plane.create({
                 type,
-                seats
             });
             return plane;
         } catch (error) {
@@ -33,11 +32,19 @@ class PlaneDAO {
         }
     }
 
-    async updatePlane(id, type) {
+    async updatePlane(id, planeData) {
         try {
-            const plane = await Plane.update(
+            const { type } = planeData;
+
+            const plane = new Plane();
+
+            if (type) {
+                plane.type = type;
+            }
+
+            const updatedPlane = await Plane.update(
                 {
-                    type
+                    plane,
                 },
                 {
                     where: {
@@ -45,8 +52,8 @@ class PlaneDAO {
                     },
                 }
             );
-            const planeUpdated = Plane.findByPk(id);
-            return planeUpdated;
+
+            return updatedPlane;
         } catch (error) {
             throw error;
         }
