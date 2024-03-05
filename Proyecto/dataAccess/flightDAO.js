@@ -18,6 +18,7 @@ class FlightDAO {
             //Comprobar si existe el avión, Y comprobar cuales asientos pertenecen a ese avión
             //comprobar si existe el usuario y si el usuario tiene asientos
             //registrar el vuelo
+            //Si solo pongo un vuelo y luego calculo el presio en reservación en base a cuantos asientos tiene el usuario
             const flight = await Flight.create({
                 idPlane,
                 origin,
