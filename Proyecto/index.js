@@ -1,27 +1,42 @@
 const express = require('express');
-const app = express();
 const morgan = require('morgan');
-const {globalErrorHandler, AppError} = require('./utils/AppError');
-require('dotenv').config();
+const { globalErrorHandler, AppError } = require('./utils/appError');
+require('dotenv').config({ path: './variables.env' });
 const db = require('./config/db');
-const userRouter = require('./routes/userRouter');
 
-db.conectar()
+// Rutas importadas
+const planeRouter = require('./routes/planeRouter');
+const paymentRouter = require('./routes/paymentRouter');
+const reservationRouter = require('./routes/reservationRouter');
+const seatRouter = require('./routes/seatRouter');
+const flightRouter = require('./routes/flightRouter');
+const userRouter = require('./routes/userRouter'); 
+
+db.conectar();
+
+const app = express();
 
 app.use(express.json());
-app.use(morgan('dev'));
+app.use(morgan('combined'));
 
-app.use('/api/users', userRouter);
+// Rutas
+//Ejemplo de ruta = http://localhost:3000/api/tasks/
+app.use('/api/planes', planeRouter);
+app.use('/api/payments', paymentRouter);
+app.use('/api/reservations', reservationRouter);
+app.use('/api/seats', seatRouter);
+app.use('/api/flights', flightRouter);
+app.use('/api/users', userRouter); 
 
 app.all('*', (req, res, next) => {
-    const error = new AppError(`Can't find ${req.originalUrl} on this server`, 404);
+    const error = new AppError(`No se encontro la ruta: ${req.originalUrl} en el servicio web`, 404);
     next(error);
 });
 
 app.use(globalErrorHandler);
 
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+app.listen(port, () => {
+    console.log(`servidor escuchando puerto: ${port}`);
 });
