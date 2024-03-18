@@ -11,4 +11,8 @@ router.get('/user/:idUser', SeatController.getSeatsByUserId);
 router.put('/:id', SeatController.updateSeat);
 router.delete('/:id', SeatController.deleteSeat);
 
+<<<<<<< HEAD
 module.exports = router;
+=======
+module.exports = router;
+>>>>>>> e2ced73d9c28666794732b3a710ad21b5f619157

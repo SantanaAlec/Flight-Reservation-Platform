@@ -11,4 +11,8 @@ router.get('/plane/:idPlane', ReservationController.getReservationsByPlaneId);
 router.put('/:id', ReservationController.updateReservation);
 router.delete('/:id', ReservationController.deleteReservation);
 
+<<<<<<< HEAD
 module.exports = router;
+=======
+module.exports = router;
+>>>>>>> e2ced73d9c28666794732b3a710ad21b5f619157
