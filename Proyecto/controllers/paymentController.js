@@ -20,7 +20,7 @@ class PaymentController {
             const unpaidReservations = await PaymentDAO.getUnpaidReservations();
             res.status(200).json(unpaidReservations);
         } catch (error) {
-            next(new AppError('Error getting unpaid payments', 500));
+            next(new AppError('Error getting unpaid reservations', 500));
         }
     }
 
