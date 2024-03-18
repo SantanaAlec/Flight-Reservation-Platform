@@ -2,21 +2,37 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('payments', {
+    await queryInterface.createTable('seats', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      idReservation: {
-        type: Sequelize.INTEGER
+      idPlane: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'planes',
+          key: 'id'
+        }
       },
-      paymentMethod: {
+      idUser: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'users',
+          key: 'id'
+        }
+      },
+      number: {
         type: Sequelize.STRING
       },
-      transactionId: {
+      classType: {
         type: Sequelize.STRING
+      },
+      price: {
+        type: Sequelize.FLOAT
       },
       createdAt: {
         allowNull: false,
@@ -29,6 +45,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('payments');
+    await queryInterface.dropTable('seats');
   }
 };
