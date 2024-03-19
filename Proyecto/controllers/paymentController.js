@@ -11,16 +11,20 @@ class PaymentController {
             const payment = await PaymentDAO.createPayment(idReservation, paymentMethod, transactionId);
             res.status(201).json(payment);
         } catch (error) {
-            next(new AppError('Error creating payment', 500));
-        }
-    }
 
-    static async getUnpaidReservations(req, res, next) {
+            next(new AppError('Error creating payment', 500));
+
+            next(new AppError('Error al crear el pago', 500));
+        }
         try {
             const unpaidReservations = await PaymentDAO.getUnpaidReservations();
             res.status(200).json(unpaidReservations);
         } catch (error) {
+
             next(new AppError('Error getting unpaid reservations', 500));
+
+            next(new AppError('Error al obtener las reservaciones sin pagar', 500));
+
         }
     }
 
@@ -57,11 +61,11 @@ class PaymentController {
             const updatedPayment = await PaymentDAO.updatePayment(id, idReservation, paymentMethod, transactionId);
             res.status(200).json(updatedPayment);
         } catch (error) {
-            next(new AppError('Error updating payment', 500));
-        }
-    }
 
-    static async deletePayment(req, res, next) {
+            next(new AppError('Error updating payment', 500));
+
+            next(new AppError('Error al actualizar el pago', 500));
+        }
         try {
             const id = req.params.id;
             const paymentExists = await PaymentDAO.getPaymentById(id);

@@ -105,4 +105,11 @@ class UserController {
     }
 }
 
+// userController.js
+
+exports.protectedRoute = (req, res) => {
+    res.status(200).json({ message: 'Ruta protegida alcanzada' });
+  };
+
+  
 module.exports = UserController;

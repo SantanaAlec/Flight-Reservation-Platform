@@ -11,16 +11,20 @@ class FlightController {
             const flight = await FlightDAO.createFlight(idPlane, origin, destiny, departureDate, arrivalDate, luggage, cost);
             res.status(201).json(flight);
         } catch (error) {
-            next(new AppError('Error creating flight', 500));
-        }
-    }
 
-    static async getAllFlights(req, res, next) {
+            next(new AppError('Error creating flight', 500));
+
+            next(new AppError('Error al crear el vuelo', 500));
+        }
         try {
             const flights = await FlightDAO.getAllFlights();
             res.status(200).json(flights);
         } catch (error) {
+
             next(new AppError('Error getting flihghts', 500));
+
+            next(new AppError('Error al obtener los vuelos', 500));
+
         }
     }
 
@@ -29,13 +33,21 @@ class FlightController {
             const id = req.params.id;
             const flight = await FlightDAO.getFlightById(id);
             if (!flight) {
+
                 return next(new AppError('flight not found', 404));
             }
             res.status(200).json(flight);
         } catch (error) {
             next(new AppError('Error getting flight', 500));
+
+                return next(new AppError('Vuelo no encontrado', 404));
+            }
+            res.status(200).json(flight);
+        } catch (error) {
+            next(new AppError('Error al obtener el vuelo', 500));
+
         }
-    }
+    
 
     static async updateFlight(req, res, next) {
         try {
