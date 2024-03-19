@@ -1,16 +1,10 @@
+// app.js (o index.js)
 const express = require('express');
 const morgan = require('morgan');
-const { globalErrorHandler, AppError } = require('./utils/appError');
+const { globalErrorHandler } = require('./utils/appError');
 require('dotenv').config({ path: './variables.env' });
 const db = require('./config/db');
-
-// Rutas importadas
-const planeRouter = require('./routes/planeRouter');
-const paymentRouter = require('./routes/paymentRouter');
-const reservationRouter = require('./routes/reservationRouter');
-const seatRouter = require('./routes/seatRouter');
-const flightRouter = require('./routes/flightRouter');
-const userRouter = require('./routes/userRouter'); 
+const routes = require('./routes');
 
 db.conectar();
 
@@ -18,17 +12,10 @@ const app = express();
 
 app.use(express.json());
 app.use(morgan('combined'));
-
-// Usar rutas
-app.use('/api/planes', planeRouter);
-app.use('/api/payments', paymentRouter);
-app.use('/api/reservations', reservationRouter);
-app.use('/api/seats', seatRouter);
-app.use('/api/flights', flightRouter);
-app.use('/api/users', userRouter); 
+app.use('/api', routes); // Montar las rutas bajo el prefijo '/api'
 
 app.all('*', (req, res, next) => {
-    const error = new AppError(`No se pudo acceder a la ruta: ${req.originalUrl} en el servicio web`, 404);
+    const error = new AppError(`No se encontro la ruta: ${req.originalUrl} en el servicio web`, 404);
     next(error);
 });
 
@@ -37,5 +24,5 @@ app.use(globalErrorHandler);
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-    console.log(`servidor escuchando en el puerto ${port}`);
+    console.log(`servidor escuchando puerto: ${port}`);
 });
