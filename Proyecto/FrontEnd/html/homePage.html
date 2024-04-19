@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="../css/homePage.css">
+</head>
+
+<body>
+    <div id="boxLogo">
+        <div id="logo">
+            <img src="../assets/img/airplane.png" alt="logo">
+        </div>
+
+        <div id="navBar">
+            <nav>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Mis vuelos</a></li>
+                    <li><a href="#">Ayuda</a></li>
+                </ul>
+            </nav>
+            <nav>
+                <ul>
+                    <li><a href="#">Iniciar Sesión</a></li>
+                    <li><a href="#">Registrarse</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div id="centerBox">
+        <img src="../assets/img/icons/avion.png" alt="logo avión" id="logoAvion">
+        <p id="textBienvenidos">Texto a la derecha</p>
+        <p id="textBienvenidos">Reserva tu vuelo al mejor precio con la mejor compañia de aerolineas que existe.</p>
+        <div id="buttonsContainer">
+            <button class="softBorderButton">Ida y Vuelta</button>
+            <button class="softBorderButton">Sencillo</button>
+        </div>
+        <p id="orgDest">Origen</p>
+        <input type="text" id="orgDestInput" placeholder="Origen...">
+        <p id="orgDest">Origen</p>
+        <input type="text" id="orgDestInput" placeholder="Origen...">
+
+        
+        <div id="fechas">
+            <div id="fechaPartida">
+                <label for="fechaPartida">Fecha de Partida:</label>
+                <input type="date" id="fechaPartida" name="fechaPartida" required>
+            </div>
+            <div id="fechaRegreso">
+                <label for="fechaRegreso">Fecha de Regreso:</label>
+                <input type="date" id="fechaRegreso" name="fechaRegreso" required>
+            </div>  
+
+            
+            <div id="asientos">
+                <h3>Asientos</h3>
+                <div id="adultos" class="asientos-input">
+                    <label for="numAdultos">Adultos:</label>
+                    <input type="number" id="numAdultos" name="numAdultos" min="1" max="10">
+                </div>
+                <div id="ninios" class="asientos-input">
+                    <label for="numNinios">Niños:  </label>
+                    <input type="number" id="numNinios" name="numNinios" min="0" max="10">
+                </div>
+                <div id="infante" class="asientos-input">
+                    <label for="numInfantes">Infantes:</label>
+                    <input type="number" id="numInfantes" name="numInfantes" min="0" max="5">
+                </div>
+            </div>
+
+            <button id="reservaButton">Reserva tu vuelo</button>
+        </div>
+    </div>
+    
+
+    <footer>
+        <div class="footer-section">
+            <h3>Equipo</h3>
+            <p>Alec</p>
+            <p>Isaac</p>
+            <p>David</p>
+        </div>
+        <div class="footer-section">
+            <h3>Acerca de nosotros</h3>
+            <p>Texto sobre nosotros</p>
+        </div>
+        <div class="footer-section">
+            <h3>Escríbenos</h3>
+            <p>Correo electrónico: ejemplo@example.com</p>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 A-Airlines. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+
+
+</body>
+
+</html>
