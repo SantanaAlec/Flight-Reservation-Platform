@@ -1,9 +1,46 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    </head>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Pagos</title>
+    <link rel="stylesheet" href="../css/paymentPage.css"> 
+</head>
+<body>
+    
+    <header>
+        <h1>Página de Pagos</h1>
+        <nav>
+            <ul>
+                <li><a href="homePage.html">Inicio</a></li>
 
-    <body>
-        
-    </body>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main>
+ 
+        <section id="payment-form">
+            <h2>Completa tu pago</h2>
+            <form action="/process-payment" method="POST">
+                <label for="card-number">Número de tarjeta:</label>
+                <input type="text" id="card-number" name="card-number" required>
+
+                <label for="expiration-date">Fecha de expiración:</label>
+                <input type="text" id="expiration-date" name="expiration-date" placeholder="MM/YY" required>
+
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" maxlength="3" required>
+
+                <button type="submit">Pagar</button>
+            </form>
+        </section>
+    </main>
+
+    
+    <footer>
+        <p>© 2024 Todos los derechos reservados.</p>
+    </footer>
+</body>
 </html>
