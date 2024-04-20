@@ -14,25 +14,25 @@ export class HeaderComponent extends HTMLElement {
         shadow.innerHTML += `
         <header>
             <div class="logo">
-                <img src="./assets/img/icons/viajar.png" alt="logo">
+                <img src="../assets/img/icons/viajar.png" alt="logo">
                 <h1>A-AIRLINES</h1>
             </div>
             <br>
             <div id="navBar">
-            <nav>
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Mis vuelos</a></li>
-                    <li><a href="#">Ayuda</a></li>
-                </ul>
-            </nav>
-            <nav>
-                <ul>
-                    <li><a href="#">Iniciar Sesión</a></li>
-                    <li><a href="#">Registrarse</a></li>
-                </ul>
-            </nav>
-        </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Mis vuelos</a></li>
+                        <li><a href="#">Ayuda</a></li>
+                    </ul>
+                </nav>
+                <nav>
+                    <ul>
+                        <li><a href="#">Iniciar Sesión</a></li>
+                        <li><a href="#">Registrarse</a></li>
+                    </ul>
+                </nav>
+            </div>
         </header>
         `;
     }
@@ -40,7 +40,7 @@ export class HeaderComponent extends HTMLElement {
     #agregarEstilo(shadow) {
         let link = document.createElement("link");
         link.setAttribute("rel", "stylesheet");
-        link.setAttribute("href", "../js/header/header.css");
+        link.setAttribute("href", "../components/header/header.css");
         shadow.appendChild(link);
     }
 }

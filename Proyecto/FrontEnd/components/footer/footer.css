@@ -1,0 +1,26 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+footer {
+    background-color: #09516e;
+    color: wheat;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.left {
+    margin: 10px;
+    text-align: left;
+    float: left;
+}
+.centered {
+    margin: 10px;
+    text-align: center;
+}
+.right {
+    margin: 10px;
+    float: right;
+    text-align: right;
+}
