@@ -6,12 +6,12 @@ class PaymentController {
         try {
             const { idReservation, paymentMethod, transactionId } = req.body;
             if (!idReservation || !paymentMethod || !transactionId) {
-                return next(new AppError('Todos los campos idReservación, método de pago, ID de transacción son requeridos', 400));
+                return next(new AppError('Missing required fields (idReservación, método de pago, ID de transacción)', 400));
             }
             const payment = await PaymentDAO.createPayment(idReservation, paymentMethod, transactionId);
             res.status(201).json(payment);
         } catch (error) {
-            next(new AppError('Error al crear el pago', 500));
+            next(new AppError('Error creating payment', 500));
         }
     }
 
@@ -20,7 +20,7 @@ class PaymentController {
             const unpaidReservations = await PaymentDAO.getUnpaidReservations();
             res.status(200).json(unpaidReservations);
         } catch (error) {
-            next(new AppError('Error al obtener las reservaciones sin pagar', 500));
+            next(new AppError('Error getting unpaid reservations', 500));
         }
     }
 
@@ -29,7 +29,7 @@ class PaymentController {
             const payments = await PaymentDAO.getAllPayments();
             res.status(200).json(payments);
         } catch (error) {
-            next(new AppError('Error al obtener los pagos', 500));
+            next(new AppError('Error getting payments', 500));
         }
     }
 
@@ -38,11 +38,11 @@ class PaymentController {
             const id = req.params.id;
             const payment = await PaymentDAO.getPaymentById(id);
             if (!payment) {
-                return next(new AppError('Pago no encontrado', 404));
+                return next(new AppError('Payment not found', 404));
             }
             res.status(200).json(payment);
         } catch (error) {
-            next(new AppError('Error al obtener el pago', 500));
+            next(new AppError('Error getting payment', 500));
         }
     }
 
@@ -52,12 +52,12 @@ class PaymentController {
             const { idReservation, paymentMethod, transactionId } = req.body;
             const paymentExists = await PaymentDAO.getPaymentById(id);
             if (!paymentExists) {
-                return next(new AppError('Pago no encontrado', 404));
+                return next(new AppError('Payment not found', 404));
             }
             const updatedPayment = await PaymentDAO.updatePayment(id, idReservation, paymentMethod, transactionId);
             res.status(200).json(updatedPayment);
         } catch (error) {
-            next(new AppError('Error al actualizar el pago', 500));
+            next(new AppError('Error updating payment', 500));
         }
     }
 
@@ -66,12 +66,12 @@ class PaymentController {
             const id = req.params.id;
             const paymentExists = await PaymentDAO.getPaymentById(id);
             if (!paymentExists) {
-                return next(new AppError('Pago no encontrado', 404));
+                return next(new AppError('Payment not found', 404));
             }
             await PaymentDAO.deletePayment(id);
-            res.status(200).json({ message: 'Pago eliminado correctamente' });
+            res.status(200).json({ message: 'Payment successfully deleted' });
         } catch (error) {
-            next(new AppError('Error al eliminar el pago', 500));
+            next(new AppError('Error deleting payment', 500));
         }
     }
 }

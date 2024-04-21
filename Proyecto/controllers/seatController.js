@@ -6,12 +6,12 @@ class SeatController {
         try {
             const { idPlane, number, classType, state, price } = req.body;
             if (!idPlane || !number || !classType || state === undefined || !price) {
-                return next(new AppError('Todos los campos (ID del avión, número, tipo de clase, estado, precio) son requeridos', 400));
+                return next(new AppError('Missing required fields (Id del avión, número, tipo de clase, estado, precio)', 400));
             }
             const seat = await SeatDAO.createSeat(idPlane, number, classType, state, price);
             res.status(201).json(seat);
         } catch (error) {
-            next(new AppError('Error al crear el asiento', 500));
+            next(new AppError('Error creating seat', 500));
         }
     }
 
@@ -20,7 +20,7 @@ class SeatController {
             const seats = await SeatDAO.getAllSeats();
             res.status(200).json(seats);
         } catch (error) {
-            next(new AppError('Error al obtener los asientos', 500));
+            next(new AppError('Error getting seats', 500));
         }
     }
 
@@ -29,11 +29,11 @@ class SeatController {
             const id = req.params.id;
             const seat = await SeatDAO.getSeatById(id);
             if (!seat) {
-                return next(new AppError('Asiento no encontrado', 404));
+                return next(new AppError('Seat not found', 404));
             }
             res.status(200).json(seat);
         } catch (error) {
-            next(new AppError('Error al obtener el asiento', 500));
+            next(new AppError('Error getting seat', 500));
         }
     }
 
@@ -43,7 +43,7 @@ class SeatController {
             const seats = await SeatDAO.getSeatsByPlaneId(idPlane);
             res.status(200).json(seats);
         } catch (error) {
-            next(new AppError('Error al obtener asientos por ID de avión', 500));
+            next(new AppError('Error getting seat by planeId', 500));
         }
     }
 
@@ -53,7 +53,7 @@ class SeatController {
             const seats = await SeatDAO.getSeatsByUserId(idUser);
             res.status(200).json(seats);
         } catch (error) {
-            next(new AppError('Error al obtener asientos por ID de usuario', 500));
+            next(new AppError('Error getting seat by userId', 500));
         }
     }
 
@@ -63,12 +63,12 @@ class SeatController {
             const seatData = req.body;
             const seatExists = await SeatDAO.getSeatById(id);
             if (!seatExists) {
-                return next(new AppError('Asiento no encontrado', 404));
+                return next(new AppError('seat not found', 404));
             }
             const updatedSeat = await SeatDAO.updateSeat(id, seatData);
             res.status(200).json(updatedSeat);
         } catch (error) {
-            next(new AppError('Error al actualizar el asiento', 500));
+            next(new AppError('Error updating seat', 500));
         }
     }
 
@@ -77,12 +77,12 @@ class SeatController {
             const id = req.params.id;
             const seatExists = await SeatDAO.getSeatById(id);
             if (!seatExists) {
-                return next(new AppError('Asiento no encontrado', 404));
+                return next(new AppError('seat not found', 404));
             }
             await SeatDAO.deleteSeat(id);
-            res.status(200).json({ message: 'Asiento eliminado correctamente' });
+            res.status(200).json({ message: 'seat successfully deleted' });
         } catch (error) {
-            next(new AppError('Error al eliminar el asiento', 500));
+            next(new AppError('Error deleting seat', 500));
         }
     }
 }
