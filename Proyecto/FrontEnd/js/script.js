@@ -6,6 +6,7 @@ import { FooterComponent } from "../components/footer/footer.js";
 window.customElements.define("header-info", HeaderComponent);
 window.customElements.define("footer-info", FooterComponent);
 
+
 /** 
 
 //add in html´s:

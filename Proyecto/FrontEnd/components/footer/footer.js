@@ -13,10 +13,24 @@ export class FooterComponent extends HTMLElement {
     #render(shadow) {
         shadow.innerHTML += `
         <footer>
-            <p class="left">Left aligned text here<br />Next line here</p>
-            <p class="right">Right aligned text here<br />Next line here</p>
-            <p class="centered">Center Text here<br />Next line here</p>
-        </footer>
+        <div class="footer-section">
+            <h3>Equipo</h3>
+            <p>Alec</p>
+            <p>Isaac</p>
+            <p>David</p>
+        </div>
+        <div class="footer-section">
+            <h3>Acerca de nosotros</h3>
+            <p>Reserva de vuelos a todo el Mundo,<br>desde México que es nuestro país de <br>origen, todo elcontinente Americano y <br>Europeo, con visión a futuro de llegar al<br>continente Asiatico</p>
+        </div>
+        <div class="footer-section">
+            <h3>Escríbenos</h3>
+            <p>Correo electrónico: ejemplo@example.com</p>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 A-Airlines. Todos los derechos reservados.</p>
+        </div>
+    </footer>
         `;
     }
 
