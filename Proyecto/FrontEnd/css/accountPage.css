@@ -1,0 +1,96 @@
+body {
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-box {
+    width: 450px;
+    padding: 60px;
+    border: 2px solid #000;
+    border-radius: 8px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+}
+
+.textbox {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.textbox input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #bfbfbf;
+    border-radius: 4px;
+    outline: none;
+    font-size: 16px;
+}
+
+.checkbox {
+    margin-bottom: 20px;
+    justify-content: center;
+    
+}
+
+.checkbox input {
+    margin-right: 10px;
+}
+
+.btn {
+    width: 60%;
+    padding: 10px;
+    margin: 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.social-buttons {
+    margin-top: 20px;
+}
+
+.facebook-btn {
+    width: 60%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3A5898;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.google-btn {
+    width: 60%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #D85600;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.facebook-btn:hover, .google-btn:hover {
+    opacity: 0.9;
+}
