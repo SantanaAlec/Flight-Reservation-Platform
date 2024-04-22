@@ -21,15 +21,15 @@ export class HeaderComponent extends HTMLElement {
             <div id="navBar">
                 <nav>
                     <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Mis vuelos</a></li>
-                        <li><a href="#">Ayuda</a></li>
+                        <li><a href="./homePage.html">Inicio</a></li>
+                        <li><a href="./flightsPage.html">Mis vuelos</a></li>
+                        <li><a href="./helpPage.html">Ayuda</a></li>
                     </ul>
                 </nav>
                 <nav>
                     <ul>
-                        <li><a href="#">Iniciar Sesión</a></li>
-                        <li><a href="#">Registrarse</a></li>
+                    <li><a href="./accountPage.html">Iniciar Sesión</a></li>
+                    <li><a href="./registerPage.html">Registrarse</a></li>
                     </ul>
                 </nav>
             </div>

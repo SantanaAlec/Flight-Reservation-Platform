@@ -1,0 +1,65 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    font-weight: bold; 
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .content {
+    text-align: center;
+  }
+  
+  .packages {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .package {
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    padding: 50px;
+    margin: 0 10px; 
+    width: 300px;
+    border: 3px solid #000;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .package h2 {
+    margin-top: 0;
+  }
+  
+  .package p {
+    flex-grow: 1; 
+  }
+  
+  
+  .choose-btn {
+    background-color: #6F25FF;
+    margin-top: auto; 
+    border: none;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 15px;
+    width: 100%;
+  }
+  
+  .choose-btn:hover {
+    background-color: #300781;
+  }
+  
+  .perks {
+    list-style-type: disc;
+    padding: 0;
+    text-align: left;
+  }
+
+  .perks li {
+    margin-bottom: 5px;
+  }
