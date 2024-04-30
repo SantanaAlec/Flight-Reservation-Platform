@@ -86,16 +86,39 @@ function getReservation() {
     console.log("Getting Reservation");
     //get reservation from localstore
     var reservation = JSON.parse(localStorage.getItem("reservation"));
+    var retrivedReservation = new Reservation(
+        reservation.origenDestino,
+        reservation.orgDestInput,
+        reservation.fechaPartida,
+        reservation.fechaRegreso,
+        reservation.seatAdult,
+        reservation.seatKids,
+        reservation.seatToodler
+    );
     //return reservation
-    return reservation;
+    return retrivedReservation;
 }
 
 function getReservations() {
     console.log("Getting Reservations");
+    var retrivedReservations = [];
     //get reservations from localstore
     var reservations = JSON.parse(localStorage.getItem("reservations"));
+    for (var reservation in reservations) {
+        var retrivedReservation = new Reservation(
+            reservation.origenDestino,
+            reservation.orgDestInput,
+            reservation.fechaPartida,
+            reservation.fechaRegreso,
+            reservation.seatAdult,
+            reservation.seatKids,
+            reservation.seatToodler
+        );
+
+        retrivedReservations.push(retrivedReservation);
+    }
     //return reservations
-    return reservations;
+    return retrivedReservations;
 }
 
 function clearReservationForm() {
