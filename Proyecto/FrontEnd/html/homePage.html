@@ -1,64 +1,85 @@
 <!DOCTYPE html>
 <html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Home</title>
+        <link rel="stylesheet" href="../css/homePage.css" />
+        <script type="module" src="../js/script.js"></script>
+        <script type="module" src="../services/ReservationService.js"></script>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="../css/homePage.css">
-    <script type="module" src="../js/script.js"></script>
-</head>
+    <body>
+        <header-info></header-info>
 
-<body>
-    <header-info></header-info>
-    
-        
         <div id="mainContainer">
             <div id="centerBox">
-                <img src="../assets/img/icons/avion.png" alt="logo avión" id="logoAvion">
+                <img
+                    src="../assets/img/icons/avion.png"
+                    alt="logo avión"
+                    id="logoAvion"
+                />
                 <p id="textBienvenidos">Texto a la derecha</p>
-                <p id="textBienvenidos">Reserva tu vuelo al mejor precio con la mejor compañia de aerolineas que existe.</p>
+                <p id="textBienvenidos">
+                    Reserva tu vuelo al mejor precio con la mejor compañia de
+                    aerolineas que existe.
+                </p>
                 <div id="buttonsContainer">
                     <button class="softBorderButton">Ida y Vuelta</button>
                     <button class="softBorderButton">Sencillo</button>
                 </div>
                 <p id="orgDest">Origen</p>
-                <input type="text" id="orgDestInput" placeholder="Origen...">
-                <p id="orgDest">Origen</p>
-                <input type="text" id="orgDestInput" placeholder="Origen...">
-        
-                
+                <input type="text" id="orgInput" placeholder="Origen..." />
+                <p id="orgDest">Destino</p>
+                <input type="text" id="destInput" placeholder="Destino..." />
+
                 <div id="fechas">
-                    <div id="fechaPartida">
+                    <div>
                         <label for="fechaPartida">Fecha de Partida:</label>
-                        <input type="date" id="fechaPartida" name="fechaPartida" required>
+                        <input type="date" id="fechaPartida" value="2024-05-05">
                     </div>
-                    <div id="fechaRegreso">
+                    <div>
                         <label for="fechaRegreso">Fecha de Regreso:</label>
-                        <input type="date" id="fechaRegreso" name="fechaRegreso" required>
-                    </div>  
-        
-                    
+                        <input type="date" id="fechaRegreso" value="2024-05-06">
+                    </div>
+
                     <div id="asientos">
                         <h3>Asientos</h3>
                         <div id="adultos" class="asientos-input">
                             <label for="numAdultos">Adultos:</label>
-                            <input type="number" id="numAdultos" name="numAdultos" min="1" max="10">
+                            <input
+                                type="number"
+                                id="numAdultos"
+                                name="numAdultos"
+                                min="1"
+                                max="10"
+                            />
                         </div>
                         <div id="ninios" class="asientos-input">
-                            <label for="numNinios">Niños:  </label>
-                            <input type="number" id="numNinios" name="numNinios" min="0" max="10">
+                            <label for="numNinios">Niños: </label>
+                            <input
+                                type="number"
+                                id="numNinios"
+                                name="numNinios"
+                                min="0"
+                                max="10"
+                            />
                         </div>
                         <div id="infante" class="asientos-input">
                             <label for="numInfantes">Infantes:</label>
-                            <input type="number" id="numInfantes" name="numInfantes" min="0" max="5">
+                            <input
+                                type="number"
+                                id="numInfantes"
+                                name="numInfantes"
+                                min="0"
+                                max="5"
+                            />
                         </div>
                     </div>
-        
+
                     <button id="reservaButton">Reserva tu vuelo</button>
                 </div>
             </div>
-
 
             <div id="sideBox">
                 <div id="advertisement">
@@ -66,13 +87,31 @@
                 </div>
 
                 <div id="imageContainer">
-                    <img id="mainImage" src="../assets/img/anuncio1.png" alt="Imagen 1">
+                    <img
+                        id="mainImage"
+                        src="../assets/img/anuncio1.png"
+                        alt="Imagen 1"
+                    />
                 </div>
                 <div id="buttonContainer">
-                    <button class="circleButton" onclick="changeImage('../assets/img/anuncio1.png')">1</button>
-                    <button class="circleButton" onclick="changeImage('../assets/img/anuncio2.jpg')">2</button>
-                    <button class="circleButton" onclick="changeImage('../assets/img/anuncio3.png')">3</button>
-
+                    <button
+                        class="circleButton"
+                        onclick="changeImage('../assets/img/anuncio1.png')"
+                    >
+                        1
+                    </button>
+                    <button
+                        class="circleButton"
+                        onclick="changeImage('../assets/img/anuncio2.jpg')"
+                    >
+                        2
+                    </button>
+                    <button
+                        class="circleButton"
+                        onclick="changeImage('../assets/img/anuncio3.png')"
+                    >
+                        3
+                    </button>
                 </div>
                 <div id="enterButton">
                     <button>Entrar</button>
@@ -80,16 +119,12 @@
             </div>
         </div>
 
-
         <footer-info></footer-info>
 
         <script>
             function changeImage(imageSrc) {
-                document.getElementById('mainImage').src = imageSrc;
+                document.getElementById("mainImage").src = imageSrc;
             }
         </script>
-
     </body>
-
-
 </html>
