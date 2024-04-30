@@ -1,5 +1,5 @@
 const express = require('express');
-const PlaneController = require('../controllers/planeController');
+const PlaneController = require('../controllers/planeController.js');
 
 const router = express.Router();
 

@@ -1,5 +1,5 @@
 const express = require('express');
-const SeatController = require('../controllers/seatController');
+const SeatController = require('../controllers/seatController.js');
 
 const router = express.Router();
 
