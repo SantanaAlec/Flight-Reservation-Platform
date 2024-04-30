@@ -1,0 +1,232 @@
+#mainContainer {
+    display: flex;
+    border: 2px solid #000;
+}
+
+#centerBox {
+    width: 75%; 
+    margin: 6px;
+    border: 2px solid #000; 
+    padding: 5px; 
+    position: relative;
+}
+
+#sideBox {
+    width: 25%; 
+    padding: 35px; 
+    margin: auto;
+}
+
+#advertisement {
+    margin-bottom: 20px; 
+    text-align: center; 
+}
+
+#advertisement p {
+    margin: 0; 
+    font-size: 20px; 
+    font-weight: bold; 
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#buttonContainer {
+    display: flex;
+    justify-content: center; 
+}
+
+#enterButton {
+    text-align: center; 
+    padding: 20px;
+}
+
+#enterButton button {
+    margin-top: 10px; 
+    padding: 10px 30px; 
+    border: 3px solid #6F25FF; 
+    background-color: #6F25FF; 
+    color: #fff; 
+    font-size: 18px; 
+    font-weight: bold; 
+    border-radius: 10px; 
+    cursor: pointer;
+}
+
+.imageButton {
+    margin-bottom: 10px;
+}
+
+#imageContainer {
+    max-width: 100%; 
+}
+
+#mainImage {
+    max-width: 100%; 
+    height: auto; 
+    display: block;
+    margin-bottom: 5px;
+}
+
+#buttonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.imageButton img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.circleButton {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%; 
+    background-color: #6F25FF; 
+    border: none; 
+    margin-right: 5px;
+    cursor: pointer; 
+}
+
+#logoAvion {
+    position: relative; 
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+}
+
+#textBienvenidos {
+    position: relative;
+    bottom: 100px;
+    left: 120px;;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.softBorderButton {
+    margin: 30px;
+    margin-top: 0;
+    border: 2px solid #BDBDBD; 
+    border-radius: 10px; 
+    padding: 10px 20px; 
+    background-color: transparent; 
+    color: #333333; 
+    font-size: 18px; 
+    margin-right: 38px; 
+}
+
+.softBorderButton:hover {
+    background-color: #09516E; 
+    color: #FFF; 
+    cursor: pointer; 
+}
+
+#orgDest {
+    margin-top: 10px; 
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#orgInput {
+    width: 80%; 
+    padding: 10px; 
+    border: 2px solid #ccc; 
+    border-radius: 5px; 
+    margin-left: 20px;
+}
+
+#destInput {
+    width: 80%; 
+    padding: 10px; 
+    border: 2px solid #ccc; 
+    border-radius: 5px; 
+    margin-left: 20px;
+}
+
+#adultos, #ninios, #infante, #fechas {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#fechaPartida, #fechaRegreso {
+    margin-right: 20px;
+}
+
+#fechaPartida label, #fechaRegreso label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#fechaPartida input[type="date"], #fechaRegreso input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin-left: 0px;
+}
+
+#fechaPartida, #fechaRegreso, #adultos, #ninios, #infante {
+    margin-right: 20px;
+}
+
+#adultos input[type="number"], #ninios input[type="number"], #infante input[type="number"], #fechaPartida input[type="date"], #fechaRegreso input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin-left: 5px;
+    margin-right: 10px; 
+}
+#asientos {
+    margin-top: 0px; /* Ajusta el espacio entre el texto y los campos */
+}
+
+#asientos h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.asientos-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    padding: 20px 20px; /* Ajusta el espacio alrededor de los campos */
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.asientos-input label {
+    margin-right: 20px; 
+}
+
+.asientos-input input[type="number"] {
+    width: 120px; 
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+#reservaButton {
+    top: 450; 
+    right: 450px; 
+    margin-top: 0; 
+    padding: 20px 30px; 
+    border: 3px solid #6F25FF; 
+    background-color: #6F25FF; 
+    color: #fff; 
+    font-size: 18px; 
+    font-weight: bold; 
+    border-radius: 10px; 
+    cursor: pointer; 
+}
