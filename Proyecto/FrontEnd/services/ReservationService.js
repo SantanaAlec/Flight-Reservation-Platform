@@ -14,52 +14,72 @@ var fechaRegreso = document.getElementById("fechaRegreso");
 var reservaButton = document.getElementById("reservaButton");
 reservaButton.addEventListener("click", createReservation);
 
+var reservations = [];
+
 //Functions
 function createReservation() {
     console.log("Creating Reservation");
 
-    var reservations = [];
+    //show variables
+    console.log(origenDestino.value);
+    console.log(orgDestInput.value);
+    console.log(fechaPartida.value);
+    console.log(fechaRegreso.value);
+    console.log(numAdultos.value);
+    console.log(numNinos.value);
+    console.log(numInfantes.value);
+
+    //Validate if all fields are filled
+    if (
+        origenDestino.value == null ||
+        origenDestino.value == "" ||
+        orgDestInput.value == null ||
+        orgDestInput.value == "" ||
+        fechaPartida.value == null ||
+        fechaPartida.value == "" ||
+        fechaRegreso.value == null ||
+        fechaRegreso.value == ""
+    ) {
+        alert("Por favor llene todos los campos");
+        return;
+    }
+
+    var seatAdult = parseInt(numAdultos.value);
+    var seatKids = parseInt(numNinos.value);
+    var seatToodler = parseInt(numInfantes.value);
 
     if (
-        !(
-            origenDestino.value == "" ||
-            orgDestInput.value == "" ||
-            fechaPartida.value == "" ||
-            fechaRegreso.value == ""
-        )
+        seatAdult == 0 &&
+        seatKids == 0 &&
+        seatToodler == 0
     ) {
-        if (
-            !(
-                numAdultos.value == "" &&
-                numInfantes.value == "" &&
-                numNinos.value == ""
-            )
-        ) {
-            //Create reservation model as json
-            var reservation = new Reservation(
-                origenDestino.value,
-                orgDestInput.value,
-                fechaPartida.value,
-                fechaRegreso.value,
-                parseInt(numAdultos.value),
-                parseInt(numNinos.value),
-                parseInt(numInfantes.value)
-            );
-
-            //Add reservation to reservations array and empty the form
-            reservations.push(reservation);
-            clearReservationForm();
-        } else {
-            alert(
-                "Por favor ingrese al menos un asiento de adulto, niño o infante"
-            );
-        }
-    } else {
-        alert("Por favor llene todos los campos");
+        alert(
+            "Por favor ingrese al menos un asiento de adulto, niño o infante"
+        );
+        return;
     }
+
+    //Create reservation model as json
+    var reservation = new Reservation(
+        origenDestino.value,
+        orgDestInput.value,
+        fechaPartida.value,
+        fechaRegreso.value,
+        seatAdult,
+        seatKids,
+        seatToodler
+    );
+
+    //Add reservation to reservations array and empty the form
+    reservations.push(reservation);
+    clearReservationForm();
 
     //save in localstore
     localStorage.setItem("reservation", JSON.stringify(reservation));
+    console.log("Reservation Created");
+    console.log(reservation);
+    localStorage.setItem("reservations", JSON.stringify(reservations));
+    console.log(reservations);
 }
 
 function getReservation() {
@@ -68,6 +88,14 @@ function getReservation() {
     var reservation = JSON.parse(localStorage.getItem("reservation"));
     //return reservation
     return reservation;
+}
+
+function getReservations() {
+    console.log("Getting Reservations");
+    //get reservations from localstore
+    var reservations = JSON.parse(localStorage.getItem("reservations"));
+    //return reservations
+    return reservations;
 }
 
 function clearReservationForm() {
