@@ -4,9 +4,8 @@ export class FooterComponent extends HTMLElement {
     }
 
     connectedCallback() {
-        const shadow = this.attachShadow({ mode: "open" }); // Crea un Shadow DOM abierto y lo asocia con el elemento personalizado.
-        this.#agregarEstilo(shadow); // Llama al método privado #agregaEstilo para agregar los estilos al Shadow DOM.
-        this.#render(shadow); // Llama al método privado #render para renderizar el contenido en el Shadow DOM.
+        const shadow = this.attachShadow({ mode: "open" });
+        this.#render(shadow);
     }
 
     // Método privado para renderizar el contenido
@@ -41,3 +40,4 @@ export class FooterComponent extends HTMLElement {
         shadow.appendChild(link);
     }
 }
+customElements.define('footer-info', FooterComponent);

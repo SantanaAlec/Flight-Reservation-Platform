@@ -4,6 +4,18 @@ const { AppError } = require('../utils/appError');
 class FlightController {
     static async createFlight(req, res, next) {
         try {
+            const { idPlane, origin, destination, departureDate, arrivalDate, luggage, cost } = req.body;
+            const sql = 'INSERT INTO flights (idPlane, origin, destination, departureDate, arrivalDate, luggage, cost) VALUES (?, ?, ?, ?, ?, ?, ?)';
+            const values = [idPlane, origin, destination, departureDate, arrivalDate, luggage, cost];
+            await db.query(sql, values);
+            res.status(201).json({ message: 'Flight created successfully' });
+        } catch (error) {
+            next(new Error('Error creating flight'));
+        }
+    }
+    
+    static async createFlight(req, res, next) {
+        try {
             const { idPlane, origin, destiny, departureDate, arrivalDate, luggage, cost } = req.body;
             if (!idPlane || !origin || !destiny || !departureDate || !arrivalDate || luggage === undefined || cost === undefined) {
                 return next(new AppError('Missing required fields (ID del avión, origen, destino, fecha de salida, fecha de llegada, equipaje, costo)', 400));

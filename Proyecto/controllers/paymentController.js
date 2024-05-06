@@ -5,6 +5,17 @@ class PaymentController {
     static async createPayment(req, res, next) {
         try {
             const { idReservation, paymentMethod, transactionId } = req.body;
+            const sql = 'INSERT INTO payments (idReservation, paymentMethod, transactionId) VALUES (?, ?, ?)';
+            const values = [idReservation, paymentMethod, transactionId];
+            await db.query(sql, values);
+            res.status(201).json({ message: 'Payment created successfully' });
+        } catch (error) {
+            next(new Error('Error creating payment'));
+        }
+    }
+    static async createPayment(req, res, next) {
+        try {
+            const { idReservation, paymentMethod, transactionId } = req.body;
             if (!idReservation || !paymentMethod || !transactionId) {
                 return next(new AppError('Missing required fields (idReservación, método de pago, ID de transacción)', 400));
             }

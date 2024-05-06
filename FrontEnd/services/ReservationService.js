@@ -98,6 +98,14 @@ function getReservations() {
     return reservations;
 }
 
+const sql = `INSERT INTO reservations (origin, destination, departureDate, returnDate, adults, children, infants) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+
+db.query(sql, [origenDestino.value, orgDestInput.value, fechaPartida.value, fechaRegreso.value, seatAdult, seatKids, seatToodler], (error, results) => {
+    if (error) throw error;
+    console.log('Reserva creada con éxito');
+});
+
+
 function clearReservationForm() {
     console.log("Clearing Reservation Form");
     origenDestino.value = "";
