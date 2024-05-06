@@ -3,14 +3,27 @@ const { User } = require("../models");
 class UserDAO {
     constructor() {}
 
+    async registerUser(userData) {
+        try {
+            const user = await User.create(userData);
+            return user;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async loginUser(username, password) {
+        try {
+            const user = await User.findOne({ where: { username, password } });
+            return user;
+        } catch (error) {
+            throw error;
+        }
+    }
+    
     async createUser(name, role, email, password) {
         try {
-            const user = await User.create({
-                name,
-                role,
-                email,
-                password,
-            });
+            const user = await User.create({ name, role, email, password });
             return user;
         } catch (error) {
             throw error;
@@ -37,11 +50,7 @@ class UserDAO {
 
     async getUsersByReservationId(idReservation) {
         try {
-            const users = User.findAll({
-                where: {
-                    idReservation,
-                },
-            });
+            const users = await User.findAll({ where: { idReservation } });
             return users;
         } catch (error) {
             throw error;
@@ -50,34 +59,8 @@ class UserDAO {
 
     async updateUser(id, userData) {
         try {
-            const { name, role, email, password } = userData;
-
-            const user = new User();
-
-            if (name) {
-                user.name = name;
-            }
-            if (role) {
-                user.role = role;
-            }
-            if (email) {
-                user.email = email;
-            }
-            if (password) {
-                user.password = password;
-            }
-
-            const updatedUser = await User.update(
-                {
-                    user,
-                },
-                {
-                    where: {
-                        id,
-                    },
-                }
-            );
-            return updatedUser;
+            await User.update(userData, { where: { id } });
+            return "User updated successfully";
         } catch (error) {
             throw error;
         }
@@ -90,7 +73,7 @@ class UserDAO {
                 throw new Error("User not found");
             }
             await user.destroy();
-            return user;
+            return "User deleted successfully";
         } catch (error) {
             throw error;
         }

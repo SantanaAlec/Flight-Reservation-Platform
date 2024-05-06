@@ -3,7 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const { globalErrorHandler } = require('./utils/appError');
 require('dotenv').config({ path: './variables.env' });
-const db = require('./config/db');
+
 const routes = require('./routes');
 
 
