@@ -1,18 +1,16 @@
 const PlaneDAO = require('../dataAccess/planeDAO');
-const { AppError } = require('../utils/appError');
+const { appError } = require('../utils/appError');
+const db = require('../config/db');
 
 class PlaneController {
-    static async createPlane(req, res, next) {
-        try {
-            const { type } = req.body;
-            if (!type) {
-                return next(new AppError('El campo tipo es requerido', 400));
-            }
-            const plane = await PlaneDAO.createPlane(type);
-            res.status(201).json(plane);
-        } catch (error) {
-            next(new AppError('Error al crear el avión', 500));
+    static async createPlane(planeData) {
+        const { type } = planeData;
+        if (!type) {
+            throw new appError('El campo tipo es requerido', 400);
         }
+
+        const result = await db.promise().query('INSERT INTO Plane (type) VALUES (?)', [type]);
+        return result;
     }
 
     static async getAllPlanes(req, res, next) {
@@ -20,7 +18,7 @@ class PlaneController {
             const planes = await PlaneDAO.getAllPlanes();
             res.status(200).json(planes);
         } catch (error) {
-            next(new AppError('Error al obtener los aviones', 500));
+            next(new appError('Error al obtener los aviones', 500));
         }
     }
 
@@ -29,11 +27,11 @@ class PlaneController {
             const id = req.params.id;
             const plane = await PlaneDAO.getPlaneById(id);
             if (!plane) {
-                return next(new AppError('Avión no encontrado', 404));
+                return next(new appError('Avión no encontrado', 404));
             }
             res.status(200).json(plane);
         } catch (error) {
-            next(new AppError('Error al obtener el avión', 500));
+            next(new appError('Error al obtener el avión', 500));
         }
     }
 
@@ -44,7 +42,7 @@ class PlaneController {
             const updatedPlane = await PlaneDAO.updatePlane(id, planeData);
             res.status(200).json(updatedPlane);
         } catch (error) {
-            next(new AppError('Error al actualizar el avión', 500));
+            next(new appError('Error al actualizar el avión', 500));
         }
     }
 
@@ -54,7 +52,7 @@ class PlaneController {
             await PlaneDAO.deletePlane(id);
             res.status(200).json({ message: 'Avión eliminado correctamente' });
         } catch (error) {
-            next(new AppError('Error al eliminar el avión', 500));
+            next(new appError('Error al eliminar el avión', 500));
         }
     }
 }

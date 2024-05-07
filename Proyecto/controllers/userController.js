@@ -1,6 +1,6 @@
 const UserDAO = require("../dataAccess/userDAO");
 const ReservationDAO = require("../dataAccess/reservationDAO");
-const { AppError } = require("../utils/appError");
+const { appError } = require("../utils/appError");
 
 class UserController {
     static async createUser(req, res, next) {
@@ -8,14 +8,14 @@ class UserController {
             const { name, role, email, password } = req.body;
 
             if (!name || !role || !email || !password) {
-                return next(new AppError("Missing required fields (nombre, rol, email or contraseña)", 400));
+                return next(new appError("Missing required fields (nombre, rol, email or contraseña)", 400));
             }
 
             const userData = { name, role, email, password };
             const user = await UserDAO.createUser(userData);
             res.status(201).json(user);
         } catch (error) {
-            next(new AppError("Error creating a user", 500));
+            next(new appError("Error creating a user", 500));
         }
     }
 
@@ -24,12 +24,12 @@ class UserController {
             const users = await UserDAO.getAllUsers();
 
             if (!users) {
-                return next(new AppError("No users found", 404));
+                return next(new appError("No users found", 404));
             }
 
             res.status(200).json(users);
         } catch (error) {
-            next(new AppError("Error getting users", 500));
+            next(new appError("Error getting users", 500));
         }
     }
 
@@ -39,7 +39,7 @@ class UserController {
             const user = await UserDAO.getUserById(id);
             res.status(200).json(user);
         } catch (error) {
-            next(new AppError("Error getting user", 404));
+            next(new appError("Error getting user", 404));
         }
     }
 
@@ -50,13 +50,13 @@ class UserController {
                 await ReservationDAO.getReservationById(idReservation);
 
             if (!existingReservartion) {
-                return next(new AppError("Reservation not found", 404));
+                return next(new appError("Reservation not found", 404));
             }
 
             const users = await UserDAO.getUsersByReservationId(idReservation);
             res.status(200).json(users);
         } catch (error) {
-            next(new AppError("Error getting users", 500));
+            next(new appError("Error getting users", 500));
         }
     }
 
@@ -66,14 +66,14 @@ class UserController {
             const existingUser = await UserDAO.getUserById(id);
 
             if (!existingUser) {
-                return next(new AppError("User not found", 404));
+                return next(new appError("User not found", 404));
             }
 
             const userData = req.body;
             const user = await UserDAO.updateUser(id, userData);
 
             if (!user) {
-                return next(new AppError("User not found", 404));
+                return next(new appError("User not found", 404));
             }
 
             res.status(200).json({
@@ -81,7 +81,7 @@ class UserController {
                 message: "User updated successfully",
             });
         } catch (error) {
-            next(new AppError("Error updating user", 500));
+            next(new appError("Error updating user", 500));
         }
     }
 
@@ -91,7 +91,7 @@ class UserController {
             const existingUser = await UserDAO.getUserById(id);
 
             if (!existingUser) {
-                return next(new AppError("User not found", 404));
+                return next(new appError("User not found", 404));
             }
 
             const user = await UserDAO.deleteUser(id);
@@ -100,7 +100,7 @@ class UserController {
                 message: "User deleted successfully",
             });
         } catch (error) {
-            next(new AppError("Error deleting user", 500));
+            next(new appError("Error deleting user", 500));
         }
     }
 }
