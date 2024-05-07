@@ -15,7 +15,7 @@ export class FooterComponent extends HTMLElement {
         <footer>
         <div class="footer-section">
             <h3>Equipo</h3>
-            <p>Alec</p>
+            <p>Santana Celaya Alec Demian</p>
             <p>Isaac</p>
             <p>David</p>
         </div>

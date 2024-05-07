@@ -121,6 +121,7 @@
     color: #FFF; 
     cursor: pointer; 
 }
+
 #orgDest {
     margin-top: 10px; 
     padding: 20px;
@@ -129,7 +130,15 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#orgDestInput {
+#orgInput {
+    width: 80%; 
+    padding: 10px; 
+    border: 2px solid #ccc; 
+    border-radius: 5px; 
+    margin-left: 20px;
+}
+
+#destInput {
     width: 80%; 
     padding: 10px; 
     border: 2px solid #ccc; 
@@ -209,7 +218,6 @@
 }
 
 #reservaButton {
-    position: absolute; 
     top: 450; 
     right: 450px; 
     margin-top: 0; 
