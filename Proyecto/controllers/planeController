@@ -5,17 +5,6 @@ class PlaneController {
     static async createPlane(req, res, next) {
         try {
             const { type } = req.body;
-            const sql = 'INSERT INTO planes (type) VALUES (?)';
-            const values = [type];
-            await db.query(sql, values);
-            res.status(201).json({ message: 'Plane created successfully' });
-        } catch (error) {
-            next(new Error('Error creating plane'));
-        }
-    }
-    static async createPlane(req, res, next) {
-        try {
-            const { type } = req.body;
             if (!type) {
                 return next(new AppError('Missing required fields (type)', 400));
             }

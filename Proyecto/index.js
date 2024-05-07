@@ -40,20 +40,3 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`servidor escuchando puerto: ${port}`);
 });
-
-const mysql = require('mysql2');
-
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'david',
-  password: 'root',
-  database: 'flight_reservation_plane'
-});
-
-db.connect(error => {
-    if (error) {
-      console.error('Error al conectar a la base de datos:', error);
-      process.exit(1); // Termina el proceso con un código de error
-    }
-    console.log('¡Conexión exitosa a la base de datos!');
-  });

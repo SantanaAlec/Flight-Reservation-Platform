@@ -6,17 +6,6 @@ class UserController {
     static async createUser(req, res, next) {
         try {
             const { name, role, email, password } = req.body;
-            const sql = 'INSERT INTO users (name, role, email, password) VALUES (?, ?, ?, ?)';
-            const values = [name, role, email, password];
-            await db.query(sql, values);
-            res.status(201).json({ message: 'User created successfully' });
-        } catch (error) {
-            next(new Error('Error creating user'));
-        }
-    }
-    static async createUser(req, res, next) {
-        try {
-            const { name, role, email, password } = req.body;
 
             if (!name || !role || !email || !password) {
                 return next(new AppError("Missing required fields (nombre, rol, email or contraseña)", 400));

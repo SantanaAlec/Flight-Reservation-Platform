@@ -40,18 +40,3 @@ module.exports = {
     appError, 
     globalErrorHandler 
 };
-function errorHandler(err, req, res, next) {
-    console.error(err);
-
-    res.status(500).send({ error: 'Algo salió mal' });
-}
-
-app.use(errorHandler);
-
-
-// Se usa de esta manera
-//require('express-async-errors');
-
-//app.get('/', async (req, res) => {
-    //throw new Error('Algo salió mal');
-//});
