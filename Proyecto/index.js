@@ -5,17 +5,17 @@ require('dotenv').config({ path: './variables.env' });
 const db = require('./config/db');
 
 // Rutas importadas
-const planeRouter = require('./routes/planeRouter');
-const paymentRouter = require('./routes/paymentRouter');
-const reservationRouter = require('./routes/reservationRouter');
-const seatRouter = require('./routes/seatRouter');
-const flightRouter = require('./routes/flightRouter');
-const userRouter = require('./routes/userRouter'); 
+const planeRouter = require('./routers/planeRouter');
+const paymentRouter = require('./routers/paymentRouter');
+const reservationRouter = require('./routers/reservationRouter');
+const seatRouter = require('./routers/seatRouter');
+const flightRouter = require('./routers/flightRouter');
+const userRouter = require('./routers/userRouter'); 
 
 
 db.connect();
 
-//SELEC TE PRUEBA
+//SELECT TE PRUEBA
 db.query('SELECT * FROM flight ', (error, results) => {
     if (error) throw error;
     console.log(results);
@@ -24,7 +24,7 @@ const app = express();
 
 
 app.all('*', (req, res, next) => {
-    const error = new appError(`No se encontro la ruta: ${req.originalUrl} en el servicio web`, 404); // Usa appError, no AppError
+    const error = new appError(`No se encontro la ruta: ${req.originalUrl} en el servicio web`, 404);
     next(error);
 });
 
