@@ -14,7 +14,7 @@ var fechaRegreso = document.getElementById("fechaRegreso");
 var reservaButton = document.getElementById("reservaButton");
 reservaButton.addEventListener("click", createReservation);
 
-var reservations = [];
+var reservationsLocal = [];
 
 //Functions
 function createReservation() {
@@ -44,23 +44,32 @@ function createReservation() {
         return;
     }
 
-    var seatAdult = parseInt(numAdultos.value);
-    var seatKids = parseInt(numNinos.value);
-    var seatToodler = parseInt(numInfantes.value);
+    let seatAdult = parseInt(numAdultos.value);
+    let seatKids = parseInt(numNinos.value);
+    let seatToodler = parseInt(numInfantes.value);
 
-    if (
-        seatAdult == 0 &&
-        seatKids == 0 &&
-        seatToodler == 0
-    ) {
+    if (seatAdult == 0 && seatKids == 0 && seatToodler == 0) {
         alert(
             "Por favor ingrese al menos un asiento de adulto, niño o infante"
         );
         return;
     }
 
+    //
+    if (isNaN(seatAdult)) {
+        seatAdult = 0;
+    }
+
+    if (isNaN(seatKids)) {
+        seatKids = 0;
+    }
+
+    if (isNaN(seatToodler)) {
+        seatToodler = 0;
+    }
+
     //Create reservation model as json
-    var reservation = new Reservation(
+    let reservation = new Reservation(
         origenDestino.value,
         orgDestInput.value,
         fechaPartida.value,
@@ -71,7 +80,7 @@ function createReservation() {
     );
 
     //Add reservation to reservations array and empty the form
-    reservations.push(reservation);
+    reservationsLocal.push(reservation);
     clearReservationForm();
 
     //save in localstore
@@ -80,45 +89,23 @@ function createReservation() {
     console.log(reservation);
     localStorage.setItem("reservations", JSON.stringify(reservations));
     console.log(reservations);
-}
 
-function getReservation() {
-    console.log("Getting Reservation");
-    //get reservation from localstore
-    var reservation = JSON.parse(localStorage.getItem("reservation"));
-    var retrivedReservation = new Reservation(
-        reservation.origenDestino,
-        reservation.orgDestInput,
-        reservation.fechaPartida,
-        reservation.fechaRegreso,
-        reservation.seatAdult,
-        reservation.seatKids,
-        reservation.seatToodler
-    );
-    //return reservation
-    return retrivedReservation;
-}
+    //Send reservation to backend with ajax
+    let xhr = new XMLHttpRequest();
 
-function getReservations() {
-    console.log("Getting Reservations");
-    var retrivedReservations = [];
-    //get reservations from localstore
-    var reservations = JSON.parse(localStorage.getItem("reservations"));
-    for (var reservation in reservations) {
-        var retrivedReservation = new Reservation(
-            reservation.origenDestino,
-            reservation.orgDestInput,
-            reservation.fechaPartida,
-            reservation.fechaRegreso,
-            reservation.seatAdult,
-            reservation.seatKids,
-            reservation.seatToodler
-        );
+    xhr.open("POST", "http://localhost:3000/api/reservations", true);
 
-        retrivedReservations.push(retrivedReservation);
-    }
-    //return reservations
-    return retrivedReservations;
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log(xhr.responseText);
+            //Redirect to flights page
+            window.location.href = "flightsPage.html";
+        }
+    };
+
+    xhr.send(JSON.stringify(reservation));
 }
 
 function clearReservationForm() {

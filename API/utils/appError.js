@@ -9,7 +9,7 @@ const logger = winston.createLogger({
     ],
 });
 
-class appError extends Error {
+class AppError extends Error {
     constructor(message, statusCode) {
         super(message);
         this.statusCode = statusCode;
@@ -37,6 +37,6 @@ const globalErrorHandler = (err, req, res, next) => {
 };
 
 module.exports = { 
-    appError, 
+    AppError, 
     globalErrorHandler 
 };

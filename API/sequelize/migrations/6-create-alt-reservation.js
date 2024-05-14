@@ -2,38 +2,40 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('payments', {
+    await queryInterface.createTable('altReservations', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      idReservation: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'reservations',
-          key: 'id'
-        }
-      },
-      paymentMethod: {
+      origin: {
         type: Sequelize.STRING
       },
-      transactionId: {
+      destination: {
         type: Sequelize.STRING
       },
-      createdAt: {
-        allowNull: false,
+      departureDate: {
         type: Sequelize.DATE
       },
-      updatedAt: {
-        allowNull: false,
+      returnDate: {
         type: Sequelize.DATE
+      },
+      adults: {
+        allowNull: true,
+        type: Sequelize.INTEGER
+      },
+      children: {
+        allowNull: true,
+        type: Sequelize.INTEGER
+      },
+      infants: {
+        allowNull: true,
+        type: Sequelize.INTEGER
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('payments');
+    await queryInterface.dropTable('altReservations');
   }
 };

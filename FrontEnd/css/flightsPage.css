@@ -18,3 +18,17 @@ th, td {
 th {
     background-color: #f2f2f2;
 }
+
+#reservasButton {
+    top: 450;
+    right: 450px;
+    margin-top: 0;
+    padding: 20px 30px;
+    border: 3px solid #6F25FF;
+    background-color: #6F25FF;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+  }

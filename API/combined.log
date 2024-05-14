@@ -1,0 +1,13 @@
+{"level":"error","message":"Missing required fields (ID de usuario, ID de vuelo, estado)","service":"user-service"}
+{"level":"error","message":"Missing required fields (Origen, Destino, Fecha de salida, Fecha de regreso, Adultos, Niños, Bebés)","service":"user-service"}
+{"level":"error","message":"Error creating reservation","service":"user-service"}
+{"level":"error","message":"Error creating reservation","service":"user-service"}
+{"level":"error","message":"Error creating reservation","service":"user-service"}
+{"level":"error","message":"Error creating reservation","service":"user-service"}
+{"level":"error","message":"Error creating reservation","service":"user-service"}
+{"level":"error","message":"Error creating reservation","service":"user-service"}
+{"level":"error","message":"Error creating reservation","service":"user-service"}
+{"level":"error","message":"Error creating reservation","service":"user-service"}
+{"level":"error","message":"Error creating reservation","service":"user-service"}
+{"level":"error","message":"Error creating reservation","service":"user-service"}
+{"level":"error","message":"Error creating reservation","service":"user-service"}
