@@ -83,13 +83,6 @@ function createReservation() {
     reservationsLocal.push(reservation);
     clearReservationForm();
 
-    //save in localstore
-    localStorage.setItem("reservation", JSON.stringify(reservation));
-    console.log("Reservation Created");
-    console.log(reservation);
-    localStorage.setItem("reservations", JSON.stringify(reservations));
-    console.log(reservations);
-
     //Send reservation to backend with ajax
     let xhr = new XMLHttpRequest();
 
